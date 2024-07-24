@@ -1,12 +1,13 @@
-import React from "react";
-import { View, Text, Button } from "react-native";
+import React, { useEffect } from "react";
+import { SafeAreaView, Text, Button } from "react-native";
 import { HomeScreenProps } from "@/screens/types";
+import Header from "@/components/Header/Header";
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+const HomeScreen = () => {
   return (
-    <View>
-      <Text>Home Screen</Text>
-    </View>
+    <SafeAreaView>
+      <Header title="메인페이지" />
+    </SafeAreaView>
   );
 };
 
