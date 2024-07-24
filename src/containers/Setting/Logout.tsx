@@ -14,13 +14,13 @@ const Logout: React.FC = () => {
   const navigation = useNavigation<LogoutNavigationProp>();
 
   const handleLogout = async () => {
-    // const result = await KakaoLogin.logout();
-    // await AsyncStorage.clear();
-    console.log(1234);
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: "Login" }],
-    // });
+    const result = await KakaoLogin.logout();
+    await AsyncStorage.clear();
+    console.log(result);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Login" }],
+    });
   };
 
   return (
