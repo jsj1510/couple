@@ -48,5 +48,25 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+	<key>CFBundleURLTypes</key>
+	<array>
+			<dict>
+					<key>CFBundleURLSchemes</key>
+					<array>
+							<string>kakao79381513f4cb7f6535bcbcb4654f1162</string>
+					</array>
+			</dict>
+	</array>
+	
+	<key>KAKAO_APP_KEY</key>
+	<string>79381513f4cb7f6535bcbcb4654f1162</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakao0123456789</string>
+		<string>kakaokompassauth</string>
+		<string>storykompassauth</string>
+		<string>kakaolink</string>
+	</array>
 </dict>
 </plist>
