@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">couple</string>
+    <string name="kakao_app_key">79381513f4cb7f6535bcbcb4654f1162</string>
 </resources>

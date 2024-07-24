@@ -1,49 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "@/screens/home/HomeScreen";
-import SettingScreen from "@/screens/setting/SettingScreen";
-import Feather from "react-native-vector-icons/Feather";
+import LoginScreen from "@/screens/Login/LoginScreen";
+import { checkKakaoLogin } from "@/utils/storage";
+import { RootStackParamList } from "@/screens/types";
 
-import { RootStackParamList, RootTabParamList } from "@/screens/types";
+import HomeTab from "./HomeTab";
+import HomeStack from "./HomeStack";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator<RootTabParamList>();
-
-const HomeStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
-  );
-};
 
 const AppNavigator = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const loggedIn = await checkKakaoLogin();
+      setIsLoggedIn(loggedIn);
+      setIsLoading(false);
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  if (isLoading) return null;
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen
-          name="HomeStack"
-          component={HomeStack}
-          options={{
-            tabBarLabel: "홈",
-            tabBarIcon: ({ focused }) => {
-              return <Feather name="home" size={24} color="black" />;
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Setting"
-          component={SettingScreen}
-          options={{
-            tabBarLabel: "세팅",
-            tabBarIcon: ({ focused }) => {
-              return <Feather name="settings" size={24} color="black" />;
-            },
-          }}
-        />
-      </Tab.Navigator>
+      {isLoggedIn ? (
+        <HomeStack initial="Home" />
+      ) : (
+        <HomeStack initial="Login" />
+      )}
     </NavigationContainer>
   );
 };
