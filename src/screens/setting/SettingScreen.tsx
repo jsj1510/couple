@@ -2,10 +2,12 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 import { SettingScreenProps } from "@/screens/types";
 
-const SettingPage: React.FC<SettingScreenProps> = ({ navigation }) => {
+import Logout from "@/containers/Setting/Logout";
+
+const SettingPage = () => {
   return (
     <View>
-      <Text>setting Screen</Text>
+      <Logout />
     </View>
   );
 };
